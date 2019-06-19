@@ -2,9 +2,39 @@
   <div class="Login">
     <input type="text" placeholder="Usuario" name="name" id="username"> <br>
     <input type="password" placeholder="Contraseña" name="password" id="password"> <br>
-    <button> Registrarme </button>
+    <button @click="login"> Registrarme </button>
   </div>
 </template>
+
+<script>
+import firebase from 'firebase';
+
+export default {
+  name: 'login',
+  data(){
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+  // login () {
+  //   this.$router.replace('home');
+  // },
+  login: function() {
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+      function(user) {
+        alert('YAAASSS')
+        },
+      function(err){
+        alert('NOPE')
+        console.log(err.message)
+      }
+      );
+    }
+  }
+}
+</script>
 
 <style>
 #Login {
