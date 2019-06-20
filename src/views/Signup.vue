@@ -2,7 +2,7 @@
   <div class="sign-up">
     <input v-model="email" type="text" placeholder="Usuario" name="name" id="username"> <br>
     <input v-model="password" type="password" placeholder="Contraseña" name="password" id="password"> <br>
-    <button @click="login"> Iniciar Sesión </button>
+    <button @click="register"> Registrarme </button>
   </div>
 </template>
 
@@ -18,11 +18,11 @@ export default {
     }
   },
   methods: {
-    login: function (e) {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+    register: function (e) {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          alert('Yasssss, bienvenida')
-          this.$router.replace('wall')
+          alert('Yasssss, tu cuenta fue creada')
+          this.$router.replace('/')
         },
         err => {
           alert('Opps, Algo Salió Mal')
