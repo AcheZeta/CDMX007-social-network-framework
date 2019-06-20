@@ -1,17 +1,17 @@
 <template>
   <div class="Login">
-    <input type="text" placeholder="Usuario" name="name" id="username"> <br>
-    <input type="password" placeholder="Contraseña" name="password" id="password"> <br>
-    <button @click="login"> Registrarme </button>
+    <input v-model="email" type="text" placeholder="Usuario" name="name" id="username"> <br>
+    <input v-model="password" type="password" placeholder="Contraseña" name="password" id="password"> <br>
+    <button @click="register"> Registrarme </button>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
+import firebase from 'firebase'
 
 export default {
   name: 'login',
-  data(){
+  data () {
     return {
       email: '',
       password: ''
@@ -21,16 +21,13 @@ export default {
   // login () {
   //   this.$router.replace('home');
   // },
-  login: function() {
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-      function(user) {
-        alert('YAAASSS')
-        },
-      function(err){
-        alert('NOPE')
-        console.log(err.message)
-      }
-      );
+    register: function (e) {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          alert('Yasssss, tu cuenta fue creada')
+          this.$router.replace('home')
+        })
+      e.preventDefault()
     }
   }
 }
