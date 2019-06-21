@@ -35,9 +35,7 @@ export default {
 
 <style>
 #sign-up {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
   color: #2c3e50;
 }

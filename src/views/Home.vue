@@ -16,3 +16,12 @@ export default {
   }
 }
 </script>
+
+<style>
+#home {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>
+

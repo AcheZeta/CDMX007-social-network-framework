@@ -11,22 +11,22 @@
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
+
 #nav {
+  font-family: 'Bitter', serif;
   padding: 30px;
 }
 
 #nav a {
+  font-family: 'Bitter', serif;
   font-weight: bold;
-  color: #2c3e50;
+  color: #FF009E;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #56F89A;
 }
 </style>

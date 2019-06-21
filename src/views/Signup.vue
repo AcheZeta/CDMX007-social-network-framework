@@ -1,6 +1,7 @@
 <template>
   <div class="sign-up">
-    <input v-model="email" type="text" placeholder="Usuario" name="name" id="username"> <br>
+    <input v-model="user" type="text" placeholder="Usuario" name="name" id="username"> <br>
+    <input v-model="email" type="text" placeholder="Correo" name="correo" id="mail"> <br>
     <input v-model="password" type="password" placeholder="Contraseña" name="password" id="password"> <br>
     <button @click="register"> Registrarme </button>
   </div>
@@ -13,6 +14,7 @@ export default {
   name: 'login',
   data () {
     return {
+      user: '',
       email: '',
       password: ''
     }
@@ -22,9 +24,9 @@ export default {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
           alert('Yasssss, tu cuenta fue creada')
-          this.$router.replace('/')
+          this.$router.replace('/login')
         },
-        err => {
+        error => {
           alert('Opps, Algo Salió Mal')
         })
       e.preventDefault()
@@ -35,13 +37,10 @@ export default {
 
 <style>
 #sign-up {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-#username, #password {
+#username, #password, #mail {
   padding: .5%;
   margin: .5%;
 }
