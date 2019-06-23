@@ -23,7 +23,7 @@ export default {
     register: function (e) {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          alert('Yasssss, tu cuenta fue creada')
+          ('Yasssss, tu cuenta fue creada')
           this.$router.replace('/login')
         },
         error => {

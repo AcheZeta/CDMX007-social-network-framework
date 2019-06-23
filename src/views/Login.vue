@@ -21,11 +21,10 @@ export default {
     login: function (e) {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          alert('Yasssss, bienvenida')
           this.$router.replace('wall')
         },
         err => {
-          alert('Opps, Algo Salió Mal')
+          alert('Opps, Algo Salió Mal, Intenta de nuevo')
         })
       e.preventDefault()
     }
