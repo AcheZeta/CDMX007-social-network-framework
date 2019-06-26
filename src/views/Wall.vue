@@ -10,7 +10,7 @@
       <button @click="addData">Comentar</button>
     </div>
     <div v-for="item in items" :key="item.id" id="comments">
-     {{ item.id }}
+     {{ item.data().id }} <br>
     </div>
   </div>
 </template>
@@ -24,21 +24,28 @@ export default {
   data () {
     return {
       comment: {
-        id: ''
+        id: '',
+        likes: 0
       },
       items: []
     }
   },
   methods: {
+    userAuth () {
+      let currentUser = firebase.auth().currentUser
+      if (currentUser == null) {
+        this.$router.replace('login')
+      }
+    },
     readData () {
-      db.collection('hola').get().then((querySnapshot) => {
+      db.collection('comments').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          this.items.push(doc.data())
+          this.items.push(doc)
         })
       })
     },
     addData () {
-      db.collection('hola').add(this.comment)
+      db.collection('comments').add(this.comment)
         .then((docRef) => {
           console.log('Document written with ID: ', docRef.id)
           // this.readData()
@@ -46,19 +53,40 @@ export default {
         .catch(function (error) {
           console.error ('Error adding document: ', error)
         })
-      this.reset()  
+      this.reset ()
     },
+    // deleteData () {
+    //   db.collection("comments").doc("DC").delete().then(function() {
+    //      console.log("Document successfully deleted!");
+    //   }).catch(function(error) {
+    //       console.error("Error removing document: ", error);
+    //   });
+    // },
     logOut () {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
     },
-    reset () {
-      this.comment.id = '';
+    addLikes () {
+      this.item.likes ++
     },
+    saveLikes () {
+      db.collection('comments').add(this.comment.likes)
+        .then((docRef) => {
+          console.log('Document written with ID: ', docRef.id)
+          // this.readData()
+        })
+        .catch(function (error) {
+          console.error ('Error adding document: ', error)
+        })
+    },
+    reset () {
+      this.comment.id = ''
+    }
   },
   created () {
     this.readData ()
+    this.userAuth ()
   }
 }
 </script>

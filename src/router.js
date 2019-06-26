@@ -22,7 +22,10 @@ export default new Router({
     {
       path: '/wall',
       name: 'wall',
-      component: Wall
+      component: Wall,
+      meta: {
+        requieresAuth: true
+      }
     },
     {
       path: '/signup',
@@ -31,16 +34,3 @@ export default new Router({
     }
   ]
 })
-
-// router.beforeEach((to, from, next) => {
-//   let currentUser = firebase.auth().currentUser
-//   let requireAuth = to.matched.some(record => record.meta.requireAuth)
-//   // console.log(user, '=main.js')
-//   if (requireAuth && !currentUser) {
-//     next('login')
-//   } else if (!autorizacion && user) {
-//     next('home')
-//   } else {
-//     next()
-//   }
-// })
